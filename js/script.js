@@ -1,12 +1,12 @@
-let massive = [];
-let answer = document.querySelector("#answer");
-let butGO = document.querySelector(".button");
-let Out = document.querySelector("#cardArea");
-let butAnswer = document.querySelector(".ansBut");
-let answerBlock = document.querySelector("#answerBlock");
-let gameRegime = document.querySelectorAll("input[name=gameRegime]")
-let suits = document.querySelector('#suits');
-let numbers = document.querySelector('#numbers');
+var massive = [];
+var answer = document.querySelector("#answer");
+var butGO = document.querySelector(".button");
+var Out = document.querySelector("#cardArea");
+var butAnswer = document.querySelector(".ansBut");
+var answerBlock = document.querySelector("#answerBlock");
+var gameRegime = document.querySelectorAll("input[name=gameRegime]")
+var suits = document.querySelector('#suits');
+var numbers = document.querySelector('#numbers');
 // for (let i = 1; i <= 52; i++) {
 // 	massive.push(i);
 // }
