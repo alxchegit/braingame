@@ -1,8 +1,16 @@
+.block_center{
+	display: block;
+	margin:5px auto;
+}
+.settings_block{
+
+}
+
 #cardArea {
 	width: 136px;
 	height: 204px;
 	overflow: hidden;	
-	border: 1px solid grey;
+	/*border: 1px solid grey;*/
 	border-radius: 13px
 }
 

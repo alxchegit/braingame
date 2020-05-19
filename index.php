@@ -21,9 +21,9 @@
     <hr>
     <div class="container">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 settings_block">
           <form action="">
-              <h2>Настройки</h2>
+              <h2 class="text-center">Настройки</h2>
 
                <div class="row">
                 <div class="col-md-6">
@@ -49,20 +49,19 @@
               </div>
            </form>
         </div>
-
-
         <div class="col-md-8 text-center">
-          <button class="button">GO</button>
-           
-              <div id="cardArea" class=""></div>
-                <br>
-                <div id="answerBlock" hidden>
-                <p>Введите ответ</p> 
-                <input type="text" name="" id="answer">
-              <br>
-              <button class="ansBut">Проверить</button>
-              </div>
-            
+          <button class="button block_center">GO</button>
+          <div id="cardArea" class="block_center"></div><br>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div id="answerBlock" hidden>
+          <p>Введите ответ</p> 
+          <input type="text" name="" id="answer">
+          <br>
+          <button class="ansBut">Проверить</button>
         </div>
       </div>
     </div>

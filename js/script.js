@@ -48,7 +48,13 @@ function randomShow(razmer, hide) {
 function printNumbers(sample, speed) {
   let current = 0;
   let end = sample.length - 1;
+  Out.css({
+    'font-family':'cursive',
+    "font-size": "6em",
+    "font-weight": "lighter",
+    "color": "darkcyan",
 
+  })
   let timerId = setInterval(function() {
     if (current == end) {
       clearInterval(timerId);
@@ -128,7 +134,6 @@ butAnswer.onclick = function(){
   }
   console.log("Ответ - "+userAnsw+" Загадано - "+hi);
 };
-
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 for (let i = gameRegime.length - 1; i >= 0; i--) {
   // console.log(gameRegime[i].value);
