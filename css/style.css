@@ -1,21 +1,42 @@
 .block_center{
-	display: block;
-	margin:5px auto;
+	
 }
 .settings_block{
 
 }
 
+.button{
+	width: 100px;
+	height: 100px;
+	border:0px;
+	border-radius: 50%;
+	background-color:#da7272;
+	margin-top: calc(250px / 2 - 50px);
+	box-shadow: 0 0 7px 9px #da7272;
+}
+
 #cardArea {
 	width: 136px;
 	height: 204px;
+	margin-top: calc(250px / 2 - 102px);
 	overflow: hidden;	
-	/*border: 1px solid grey;*/
-	border-radius: 13px
+	display: none;
+	border-radius: 13px;
+	opacity: 0;
+}
+
+.numbers_show{
+	font-family:cursive;
+    font-size: 6em;
+    font-weight: lighter;
+    color: darkcyan;
 }
 
 .cardImg{
 	background-image: url('../img/atlasnye-884206.png');
+	border: 1px solid grey;
+	background-repeat: no-repeat;
+	background-position: 200px 0px;
 }
 
 .card-1{background-position: 0px 0px;}
@@ -75,3 +96,25 @@
 .card-50{background-position: -1469px -645px;}
 .card-51{background-position: -1616px -645px;}
 .card-52{background-position: -1763px -645px;}
+
+input[name=gameRegime] {
+	display: none;
+}
+input[name=gameRegime] + label{
+	width: calc(100% + 15px);
+	padding-right: 10px;
+	padding-left: 10px;
+	background-color: #fff;
+	transition: background-color 0.4s linear;
+}
+
+input[name=gameRegime]:checked + label{
+	background-color: #cefdc6;
+	display: block;	
+	transition: background-color 0.4s linear 0.4s;
+}
+
+.bg_color {
+	background-color: #cefdc6;
+}
+

@@ -1,156 +1,189 @@
-var massive = [];
-var answer = document.querySelector("#answer");
-var butGO = document.querySelector(".button");
-var Out = document.querySelector("#cardArea");
-var butAnswer = document.querySelector(".ansBut");
-var answerBlock = document.querySelector("#answerBlock");
-var gameRegime = document.querySelectorAll("input[name=gameRegime]")
-var suits = document.querySelector('#suits');
-var numbers = document.querySelector('#numbers');
-// for (let i = 1; i <= 52; i++) {
-// 	massive.push(i);
-// }
-function get_cookie (cookie_name){
-  var results = document.cookie.match ( '(^|;) ?' + cookie_name + '=([^;]*)(;|$)' ); 
-  if ( results )
-    return ( unescape ( results[2] ) );
-  else
-    return null;
-}
+$(function(){
 
-function getRandom(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+  var answer = $("#answer");
+  var but_go = $(".button");
+  var out = $("#cardArea");
+  var but_answer = $(".ansBut");
+  var answer_block = $("#answerBlock");
+  var $game_regime = $("input[name=gameRegime]")
+  var suits = $('#suits');
+  var numbers = $('#numbers');
 
-function randomShow(razmer, hide) {
-  let resultArray = [];
-  let check = true;
+  function get_cookie (cookie_name){
+    var results = document.cookie.match ( '(^|;) ?' + cookie_name + '=([^;]*)(;|$)' ); 
+    if ( results )
+      return ( unescape ( results[2] ) );
+    else
+      return null;
+  }
 
-  while (check) {
-    let b = getRandom(1, razmer);
-    let chk = false;
-    for (let i = 0; i <= resultArray.length - 1; i++) {
-      if (resultArray[i] == b) {
-        chk = true;
-      }
-    }
-    if (!chk && b != hide) {
+  function getRandom(max) {
+    return Math.floor(Math.random() * (max - 1 + 1)) + 1;
+  }
+
+  function randomShow(razmer, hide){
+    let resultArray = [];
+    let b;       
+    do {
+      b = getRandom(razmer);
+      if (b != hide && !resultArray.includes(b)) {
       resultArray.push(b);
-    }
-    if (resultArray.length == razmer - 1) {
-      check = false;
-    }
+      }
+    } while (resultArray.length < razmer - 1);
+    return resultArray;
   }
-  return resultArray;
-}
 
-
-function printNumbers(sample, speed) {
-  let current = 0;
-  let end = sample.length - 1;
-  Out.css({
-    'font-family':'cursive',
-    "font-size": "6em",
-    "font-weight": "lighter",
-    "color": "darkcyan",
-
-  })
-  let timerId = setInterval(function() {
-    if (current == end) {
-      clearInterval(timerId);
-    }
-    Out.innerHTML = sample[current];
-    current++;
-  }, speed);
-}; 
-
-function printCards(numbArray, speed){
-  let current = 0;
-  let end = numbArray.length - 1;
-
-  let timerId = setInterval(function() {
-    if (current == end) {
-      clearInterval(timerId);
-    }
-    document.querySelector('#cardArea').className = "cardImg card-"+numbArray[current];
-    current++;
-  }, speed);
-  
-};
-
-
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-butGO.onclick = function() {
-  butGO.disabled = true;
-  let gRegime = get_cookie('gameRegime');
-  let cardAmount = document.querySelector("#kolvoCisel").value;
-  let inpArr = document.querySelectorAll("input[name=speedInp]");  
-  let diffArr = document.querySelectorAll("input[name=difficulty]");
-   
-  for (let i = diffArr.length - 1; i >= 0; i--) {
-    if (diffArr[i].checked) {
-      var diffVal = diffArr[i].value;
-    };
-  };
-  
-  if (gRegime == 1) {cardAmount = diffVal; };
-
-  let hi = getRandom(1, cardAmount);
-  document.cookie = "valueID="+(hi*653248);
-  let abc = randomShow(cardAmount, hi);
-
-   for (let i=0; i<= inpArr.length-1; i++){
-    if(inpArr[i].name == "speedInp" && inpArr[i].checked ){
-      speed = Number(inpArr[i].value);
-        //console.log(speed);
-       }
-    }
-  if (gRegime == 0) {   
-    printNumbers(abc, speed);
+  function showInOut(numArray, speed, game) {
+    let current = 0;
+    let end = numArray.length - 1;
     
-  }else if(gRegime == 1) {
-    printCards(abc, speed);
-  }; 
-  
-  console.log(abc);
-
-  setTimeout(function(){
-    Out.innerHTML = "";
-    Out.className = "";
-    butGO.disabled = false;
-    answerBlock.hidden = false;
-  }, (cardAmount * speed));
-  
-};
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++
-butAnswer.onclick = function(){
-  let userAnsw = answer.value;
-  let hi = get_cookie('valueID')/653248;
-  if(userAnsw == hi){
-    alert("Молодец! Ответ правильный");
-    answer.value = '';
-  }else{
-    alert("Неверно ;(")
+    if(+game){
+      out.addClass("cardImg");      
+    } else {
+      out.addClass("numbers_show");
+    }
+    let timerId = setInterval(function (){
+      if (current == end) {
+        clearInterval(timerId);
+        setTimeout(function(){
+          out.removeClass("cardImg card-"+numArray[end]);
+          out.html("");
+        }, speed);
+        
+      }
+      if (+game) {
+        out.removeClass("card-" + numArray[current-1]);
+        out.addClass("card-"+numArray[current]);
+      } else {
+        out.html(numArray[current]);        
+      }
+      
+      current++;
+    }, speed);
   }
-  console.log("Ответ - "+userAnsw+" Загадано - "+hi);
-};
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-for (let i = gameRegime.length - 1; i >= 0; i--) {
-  // console.log(gameRegime[i].value);
-  gameRegime[i].onchange = function(){
-    console.log(this.value);
-    if (this.value == 0) {
-      document.cookie = "gameRegime="+0
-      numbers.hidden = false;
-      suits.hidden   = true;
+ 
+  
 
-    };
+/*
+*
+* Game regime change
+*
+*/
 
-    if (this.value == 1) {
-      document.cookie = "gameRegime="+1
-      numbers.hidden = true;
-      suits.hidden   = false;
-    };
+  $game_regime.change(function(){
+    let game, anim_speed = 400;
+    $(this).each(function(indx, elem){
+      if($(this).prop("checked")){
+        game = $(this).attr("value");
+      }   
+    })
+    if(+game) {    
+      numbers.animate({
+        opacity:"toggle"
+      },anim_speed, "linear", function(){
+        $(this).css("display","none");
+        suits.css({
+          "display":"block",
+          "opacity":"0"
+        });
+        suits.animate({
+          opacity:"1"
+        },anim_speed, "linear")
+      }) 
+    } else {
+      suits.animate({
+        opacity:"toggle"
+      },anim_speed, "linear", function(){
+        $(this).css("display","none");
+        numbers.css({
+          "display":"block",
+          "opacity":"0"
+        });
+        numbers.animate({
+          opacity:"1"
+        },anim_speed,"linear")
+      })   
+    }
+     
+  });
 
-  };
-};
+
+/*
+*
+* Button GO!
+*
+*/
+  but_go.click(function(){
+    
+    let game, input_speed, input_difficulty;
+
+    $game_regime.each(function (indx, elem){
+      if($(this).prop("checked")){
+        game = +$(this).attr("value");
+      }
+    });
+
+    let numbers_amount = $("#kolvoCisel").val();
+    
+    $("input[name=speedInp]").each(function(){
+      if($(this).prop("checked")){
+        input_speed = $(this).attr('value');
+      }
+    });
+    
+    $("input[name=difficulty]").each(function(){
+      if($(this).prop("checked")){
+        input_difficulty = $(this).attr("value");
+      }
+    });
+
+    let max_num = game ? input_difficulty :  numbers_amount;
+    let hide = getRandom(max_num);
+    document.cookie = "hiden_number=" + hide;
+    let numArray = randomShow(max_num, hide);
+    console.log("array - " + numArray + "; hide-" + hide);
+    let anim_speed = 500;
+    $(this).animate({
+      opacity:"0"
+    },anim_speed, "linear", function(){
+      $(this).css("display", "none");
+      out.css("display","inline-block")
+          .animate({
+            opacity:"1"
+          },anim_speed,"linear", function(){
+            showInOut(numArray, input_speed, game);   
+            setTimeout(function(){
+              out.animate({
+                opacity:"0"
+              },anim_speed, "linear", function(){
+                out.css("display", "none");
+                but_go.css("display","inline-block")
+                  .animate({
+                    opacity:"1"
+                  },anim_speed,"linear")
+
+              })                    
+            }, (max_num * input_speed));
+
+          })
+    })     
+  });
+
+/*
+*
+* Button Answer
+*
+*/
+  but_answer.click(function(){
+    let userAnsw = answer.val();
+    let hi = get_cookie("hiden_number");
+    if(userAnsw == hi){
+        alert("Молодец! Ответ правильный");
+        answer.val("");
+    }else{
+      alert("Неверно ;(")
+    }
+    console.log("Ответ - "+userAnsw+" Загадано - "+hi);
+  });
+//////////////////////////////////
+});  
