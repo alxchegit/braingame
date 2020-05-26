@@ -113,7 +113,9 @@ $(function(){
 * Button GO!
 *
 */
-  but_go.click(function(){
+  but_go.click(function(e){
+
+    e.preventDefault();
     
     let game, input_speed, input_difficulty;
 

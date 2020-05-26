@@ -14,6 +14,7 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 	<link href="css/style.css" rel="stylesheet">
+  <link rel="shortcut icon" href="img/favicon.ico">
   </head>
   <body>
     <h1 class="text-center">Тренажер памяти и внимательности</h1>
@@ -48,18 +49,19 @@
            </form>
         </div>
         <div class="col-md-7 text-center">
-          <button class="button">Вперед!</button>
+          <div class="button"><p>Вперед!</p></div>
           <div id="cardArea" ></div>
         </div>
 
       </div>
 
       <div class="row">
-        <div id="answerBlock">
-          <p>Введите ответ</p> 
+        <div class="col-md-12" id="answerBlock">
+          <h2 class="text-center">Введите ответ</h2>
+          <div class="col-md-12" class="pick_block" id="pick_block"></div>
           <input type="text" name="" id="answer">
           <br>
-          <button class="ansBut">Проверить</button>
+          <div class="ansBut">Проверить</div>
         </div>
       </div>
     </div>

@@ -6,14 +6,37 @@
 }
 
 .button{
-	width: 100px;
-	height: 100px;
-	border:0px;
-	border-radius: 50%;
-	background-color:#da7272;
-	margin-top: calc(250px / 2 - 50px);
-	box-shadow: 0 0 7px 9px #da7272;
+	
+    width: 200px;
+    height: 100px;
+    border: 3px solid #a6daa6;
+    border-radius: 5%;
+    /* background-color: #da7272; */
+    margin-top: calc(250px / 2 - 50px);
+    /* box-shadow: 0 0 7px 9px #da7272; */
+    display: inline-block;
+    transition: all .3s linear;
 }
+
+.button:hover{
+    background-color: #cefdc6;
+    border-color: #cefdc6;
+    transition: all .3s linear;
+}
+
+.button > p {
+	
+    text-align: center;
+    margin-top: 25px;
+    /* transform: translateY(-50%); */
+    font-family: cursive;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #298427;
+    cursor: default;
+}
+
 
 #cardArea {
 	width: 136px;
@@ -118,3 +141,10 @@ input[name=gameRegime]:checked + label{
 	background-color: #cefdc6;
 }
 
+.pick_block {
+	min-height: 200px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	
+}
