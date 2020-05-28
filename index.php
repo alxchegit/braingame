@@ -13,7 +13,7 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	<link href="css/style.css" rel="stylesheet">
+	<link href="css/style.css?<?=rand();?>" rel="stylesheet">
   <link rel="shortcut icon" href="img/favicon.ico">
   </head>
   <body>
@@ -57,11 +57,11 @@
 
       <div class="row">
         <div class="col-md-12" id="answerBlock">
-          <h2 class="text-center">Введите ответ</h2>
+          <h2 class="text-center">Выберите ответ</h2> 
           <div class="col-md-12" class="pick_block" id="pick_block"></div>
-          <input type="text" name="" id="answer">
-          <br>
-          <div class="ansBut">Проверить</div>
+         <!--  <input type="text" name="" id="answer">
+         <br>
+         <div class="ansBut">Проверить</div> -->
         </div>
       </div>
     </div>
@@ -70,7 +70,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <!-- <script src="js/script.js"></script> -->
-    <script src="js/script.js"></script>
+    <script src="js/script.js?<?=rand();?>"></script>
     
   </body>
 </html>

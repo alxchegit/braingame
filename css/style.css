@@ -56,7 +56,7 @@
 }
 
 .cardImg{
-	background-image: url('../img/atlasnye-884206.png');
+	background-image: url('../img/atlasnye-884206.png'); /* размер -  1898/848 */
 	border: 1px solid grey;
 	background-repeat: no-repeat;
 	background-position: 200px 0px;
@@ -120,6 +120,7 @@
 .card-51{background-position: -1616px -645px;}
 .card-52{background-position: -1763px -645px;}
 
+
 input[name=gameRegime] {
 	display: none;
 }
@@ -141,10 +142,37 @@ input[name=gameRegime]:checked + label{
 	background-color: #cefdc6;
 }
 
-.pick_block {
+#pick_block {
 	min-height: 200px;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	
+}
+
+.answer_card {	
+	width: 68px;
+	height: 102px;
+	margin: 5px;
+	overflow: hidden;	
+	border-radius: 6px;
+	/*transform: scale(0.4);*/
+	background-size: 949px 424px;
+	transition: all 0.2s linear;
+	cursor: default;
+}
+
+.answer_card:hover {
+	transform: scale(1.2);
+	transition: transform 0.2s linear;
+}
+
+.correct_answer {
+	box-shadow: 0px 0px 15px 5px #199e1c;
+	transform: scale(1.5);
+	transition: all 0.2s linear;
+}
+
+.incorrect_answer {
+	box-shadow: 0px 0px 15px 5px #e40000;
 }
